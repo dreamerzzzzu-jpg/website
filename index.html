@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="MAA KHERU — Görünen dünyanın ardındaki hakikat için tasarlanmış kapalı bir moda ritüeli.">
+  <title>MAA KHERU — Private Fashion Ritual</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true">
+    <span class="orb orb--one"></span>
+    <span class="orb orb--two"></span>
+  </div>
+
+  <div class="site-shell">
+    <section class="screen screen--gate is-active" id="gateScreen" aria-labelledby="gateTitle">
+      <div class="gate-frame">
+        <div class="sigil sigil--large" aria-hidden="true">
+          <span class="sigil__eye"></span>
+          <span class="sigil__pupil"></span>
+        </div>
+
+        <p class="eyebrow">Private access · Est. MMXXVI</p>
+        <h1 class="brand brand--gate" id="gateTitle">MAA KHERU</h1>
+        <p class="gate-copy">Yalnızca davet edilenler için.</p>
+
+        <form class="access-form" id="accessForm" novalidate>
+          <label class="sr-only" for="password">Erişim şifresi</label>
+          <div class="access-field">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="ERİŞİM ŞİFRESİ"
+              autocomplete="current-password"
+              spellcheck="false"
+              required
+            >
+            <button class="arrow-button" type="submit" aria-label="Giriş yap">
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+          <p class="access-message" id="accessMessage" role="status" aria-live="polite"></p>
+        </form>
+
+        <span class="gate-index">I</span>
+      </div>
+    </section>
+
+    <section class="screen screen--welcome" id="welcomeScreen" aria-labelledby="welcomeTitle" aria-hidden="true">
+      <div class="welcome-content">
+        <div class="cartouche" aria-hidden="true">
+          <span class="cartouche__line"></span>
+          <span class="cartouche__diamond"></span>
+        </div>
+        <p class="eyebrow">The threshold</p>
+        <h2 id="welcomeTitle">Hakikatin yoluna hoş geldin.<br>Kaderin bizimdir.</h2>
+        <button class="text-button" id="continueButton" type="button">
+          <span>Devam et</span>
+          <span class="text-button__line" aria-hidden="true"></span>
+        </button>
+      </div>
+    </section>
+
+    <main class="screen screen--main" id="mainScreen" aria-hidden="true">
+      <nav class="topbar" aria-label="Ana navigasyon">
+        <a class="topbar__brand" href="#hero" aria-label="MAA KHERU ana sayfa">MK</a>
+        <span class="topbar__status"><i></i> Private preview</span>
+        <a class="topbar__link" href="#acceptance">Kabul talebi</a>
+      </nav>
+
+      <section class="hero" id="hero">
+        <div class="hero__ornament" aria-hidden="true">
+          <span class="hero__arc hero__arc--outer"></span>
+          <span class="hero__arc hero__arc--inner"></span>
+          <span class="hero__eye"></span>
+          <span class="hero__axis"></span>
+        </div>
+
+        <div class="hero__content">
+          <p class="eyebrow reveal">Maison privée · İstanbul</p>
+          <h1 class="brand brand--hero reveal">MAA<br>KHERU</h1>
+          <div class="hero__footer reveal">
+            <p>Görünen dünyanın ardındaki hakikat için tasarlanmış kapalı bir moda ritüeli.</p>
+            <span class="scroll-mark" aria-hidden="true">
+              <i></i>
+              Aşağı
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="manifesto" aria-labelledby="manifestoTitle">
+        <div class="section-number" aria-hidden="true">II — IV</div>
+        <div class="section-heading">
+          <p class="eyebrow">The inner architecture</p>
+          <h2 id="manifestoTitle">Bir koleksiyon değil.<br>Bir kabul sistemi.</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-card__top">
+              <span>01</span>
+              <span class="feature-symbol feature-symbol--temple" aria-hidden="true"></span>
+            </div>
+            <div class="feature-card__body">
+              <h3>Tapınak</h3>
+              <p>Marka, bir mağazadan çok kabul alanı gibi kurgulanır.</p>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__top">
+              <span>02</span>
+              <span class="feature-symbol feature-symbol--kimono" aria-hidden="true"></span>
+            </div>
+            <div class="feature-card__body">
+              <h3>Kimono</h3>
+              <p>Yılda sınırlı sayıda üretilen, cinsiyetsiz ve törensel bir siluet.</p>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__top">
+              <span>03</span>
+              <span class="feature-symbol feature-symbol--circle" aria-hidden="true"></span>
+            </div>
+            <div class="feature-card__body">
+              <h3>Topluluk</h3>
+              <p>Satın alan kişi müşteri değil, sisteme kabul edilen kişidir.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="acceptance" id="acceptance" aria-labelledby="acceptanceTitle">
+        <div class="acceptance__mark" aria-hidden="true">
+          <span></span>
+        </div>
+        <p class="eyebrow">The next passage</p>
+        <h2 id="acceptanceTitle">Kabul Talebi</h2>
+        <p class="acceptance__copy">
+          İçeri girmek, görülmekten vazgeçmeyi gerektirir.
+          Niyetini bildir; kapı zamanı geldiğinde açılacaktır.
+        </p>
+        <a class="contact-button" href="mailto:dreamerzzzzu@gmail.com">
+          <span>Niyetini bildir</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+
+      <footer class="footer">
+        <p>MAA KHERU — Do not trust the visible world.</p>
+        <span>MMXXVI</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
