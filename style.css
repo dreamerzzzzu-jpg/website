@@ -832,23 +832,22 @@ a {
   transform: translateY(-0.5rem);
 }
 
-.feature-card__trigger {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  padding: 0;
-  border: 0;
+.feature-card--interactive {
   cursor: pointer;
-  background: transparent;
 }
 
-.feature-card__trigger:focus-visible {
+.feature-card--interactive:focus-visible {
   outline: 1px solid var(--gold);
   outline-offset: -0.65rem;
+  transform: translateY(-0.5rem);
 }
 
-.feature-card:has(.feature-card__trigger:focus-visible) {
-  transform: translateY(-0.5rem);
+.feature-card--interactive .feature-card__media,
+.feature-card--interactive .feature-card__media *,
+.feature-card--interactive .feature-symbol,
+.feature-card--interactive .feature-symbol::before,
+.feature-card--interactive .feature-symbol::after {
+  pointer-events: none;
 }
 
 .feature-card__media {

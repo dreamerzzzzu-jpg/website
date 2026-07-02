@@ -384,9 +384,21 @@ function handleTemplePanelKeys(event) {
   }
 }
 
+function attachPanelCardInteraction(card, openPanel) {
+  card.addEventListener("click", openPanel);
+  card.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+
+    event.preventDefault();
+    openPanel();
+  });
+}
+
 buildTempleGates();
 
-openTemplePanelButton.addEventListener("click", openTemplePanel);
+attachPanelCardInteraction(openTemplePanelButton, openTemplePanel);
 closeTemplePanelButton.addEventListener("click", () => closeTemplePanel());
 templeAcceptanceCta.addEventListener("click", moveToAcceptance);
 document.addEventListener("keydown", handleTemplePanelKeys);
@@ -455,7 +467,7 @@ function handleKimonoPanelKeys(event) {
   }
 }
 
-openKimonoPanelButton.addEventListener("click", openKimonoPanel);
+attachPanelCardInteraction(openKimonoPanelButton, openKimonoPanel);
 closeKimonoPanelButton.addEventListener("click", closeKimonoPanel);
 revealKimonoFormButton.addEventListener("click", revealKimonoForm);
 document.addEventListener("keydown", handleKimonoPanelKeys);
