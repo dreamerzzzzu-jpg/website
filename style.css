@@ -832,6 +832,25 @@ a {
   transform: translateY(-0.5rem);
 }
 
+.feature-card__trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.feature-card__trigger:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: -0.65rem;
+}
+
+.feature-card:has(.feature-card__trigger:focus-visible) {
+  transform: translateY(-0.5rem);
+}
+
 .feature-card__media {
   position: absolute;
   inset: 0;
@@ -979,6 +998,325 @@ a {
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.9);
   font-size: 0.82rem;
   line-height: 1.75;
+}
+
+/* The Twelve Gates */
+body.panel-open {
+  overflow: hidden;
+}
+
+.temple-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  visibility: hidden;
+  grid-template-columns: minmax(22rem, 42vw) minmax(0, 1fr);
+  opacity: 0;
+  background: #080808;
+  pointer-events: none;
+  transition:
+    opacity 650ms var(--ease),
+    visibility 0s linear 650ms;
+}
+
+.temple-panel.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition:
+    opacity 650ms var(--ease),
+    visibility 0s linear 0s;
+}
+
+.temple-panel__visual {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  border-right: 1px solid rgba(165, 138, 85, 0.2);
+  background: #080808;
+}
+
+.temple-panel__visual::before,
+.temple-panel__visual::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: "";
+  pointer-events: none;
+}
+
+.temple-panel__visual::before {
+  background:
+    linear-gradient(180deg, rgba(6, 6, 6, 0.4), transparent 42%, rgba(6, 6, 6, 0.83)),
+    linear-gradient(90deg, transparent 50%, rgba(6, 6, 6, 0.62));
+}
+
+.temple-panel__visual::after {
+  inset: 1.5rem;
+  border: 1px solid rgba(238, 233, 220, 0.12);
+}
+
+.temple-panel__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.2) sepia(0.08) saturate(0.88) contrast(1.12) brightness(0.62);
+  transform: scale(1.02);
+}
+
+.temple-panel__visual-mark {
+  position: absolute;
+  right: 2.5rem;
+  bottom: 2.5rem;
+  left: 2.5rem;
+  z-index: 2;
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  color: rgba(238, 233, 220, 0.72);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+}
+
+.temple-panel__visual-mark i {
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), rgba(165, 138, 85, 0.12));
+}
+
+.temple-panel__content {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2rem clamp(2rem, 4vw, 5rem) 3rem;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(165, 138, 85, 0.07), transparent 28rem),
+    #0b0b0a;
+  scrollbar-color: rgba(165, 138, 85, 0.4) transparent;
+  scrollbar-width: thin;
+}
+
+.temple-panel__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(3rem, 6vh, 5.5rem);
+  padding-bottom: 1rem;
+  color: #716e66;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.56rem;
+  letter-spacing: 0.24em;
+}
+
+.temple-panel__close {
+  padding: 0.6rem 0;
+  color: var(--ivory-muted);
+  border: 0;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  background: transparent;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 250ms ease, border-color 250ms ease;
+}
+
+.temple-panel__close:hover,
+.temple-panel__close:focus-visible {
+  color: var(--ivory);
+  border-color: var(--gold);
+}
+
+.temple-panel__intro {
+  max-width: 52rem;
+}
+
+.temple-panel__intro h2 {
+  margin: 1.4rem 0 0.75rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.6rem, 7vw, 8.5rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+}
+
+.temple-panel__subtitle {
+  margin: 0 0 2rem;
+  color: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.temple-panel__lead {
+  max-width: 46rem;
+  margin: 0;
+  color: #aaa69c;
+  font-size: 0.82rem;
+  line-height: 1.85;
+}
+
+.gate-interface {
+  display: grid;
+  align-items: stretch;
+  grid-template-columns: minmax(9.5rem, 12rem) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4.5rem);
+  margin-top: clamp(3rem, 6vh, 5.5rem);
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.gate-list {
+  display: grid;
+  max-height: 38vh;
+  overflow-y: auto;
+  align-content: start;
+  gap: 0;
+  padding-right: 0.75rem;
+  border-right: 1px solid var(--line);
+  scrollbar-color: rgba(165, 138, 85, 0.4) transparent;
+  scrollbar-width: thin;
+}
+
+.gate-marker {
+  position: relative;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: 0.8rem;
+  min-height: 3.2rem;
+  padding: 0.55rem 0.7rem;
+  color: #68655e;
+  border: 0;
+  border-bottom: 1px solid rgba(238, 233, 220, 0.07);
+  cursor: pointer;
+  background: transparent;
+  text-align: left;
+  transition: color 300ms ease, background 300ms ease;
+}
+
+.gate-marker::before {
+  position: absolute;
+  top: 50%;
+  left: -1px;
+  width: 1px;
+  height: 0;
+  content: "";
+  transform: translateY(-50%);
+  background: var(--gold);
+  transition: height 350ms var(--ease);
+}
+
+.gate-marker:hover,
+.gate-marker:focus-visible {
+  color: #b9b4a9;
+  outline: 0;
+  background: rgba(238, 233, 220, 0.02);
+}
+
+.gate-marker.is-active {
+  color: var(--ivory);
+  background: linear-gradient(90deg, rgba(165, 138, 85, 0.08), transparent);
+}
+
+.gate-marker.is-active::before {
+  height: 72%;
+}
+
+.gate-marker__number {
+  color: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.72rem;
+}
+
+.gate-marker__name {
+  overflow: hidden;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gate-detail {
+  align-self: center;
+  min-height: 16rem;
+  padding: clamp(1rem, 3vw, 3rem) 0;
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition: opacity 280ms ease, transform 500ms var(--ease);
+}
+
+.gate-detail.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gate-detail__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  color: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+}
+
+.gate-detail__meta span:first-child {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid var(--gold-dim);
+  border-radius: 50%;
+}
+
+.gate-detail h3 {
+  max-width: 35rem;
+  margin: 0 0 1.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.7rem, 3vw, 3.25rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+.gate-detail > p {
+  max-width: 36rem;
+  margin: 0;
+  color: #a5a198;
+  font-size: 0.82rem;
+  line-height: 1.85;
+}
+
+.temple-panel__cta {
+  display: flex;
+  width: min(100%, 22rem);
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2.25rem;
+  padding: 1.15rem 1.35rem;
+  color: var(--ivory);
+  border: 1px solid rgba(165, 138, 85, 0.55);
+  cursor: pointer;
+  background: transparent;
+  font-size: 0.61rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 350ms ease, background 350ms ease;
+}
+
+.temple-panel__cta:hover,
+.temple-panel__cta:focus-visible {
+  color: var(--black);
+  outline: 0;
+  background: var(--gold);
 }
 
 .acceptance {
@@ -1265,6 +1603,106 @@ a {
 
   .feature-card__body p {
     max-width: 17rem;
+  }
+
+  .temple-panel {
+    display: block;
+    overflow-y: auto;
+  }
+
+  .temple-panel__visual {
+    height: 42svh;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(165, 138, 85, 0.2);
+  }
+
+  .temple-panel__visual::after {
+    inset: 1rem;
+  }
+
+  .temple-panel__visual-mark {
+    right: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .temple-panel__content {
+    overflow: visible;
+    padding: 1.5rem 1.25rem 4rem;
+  }
+
+  .temple-panel__top {
+    margin-bottom: 4rem;
+  }
+
+  .temple-panel__close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 52;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid rgba(165, 138, 85, 0.45);
+    background: rgba(7, 7, 7, 0.72);
+    backdrop-filter: blur(8px);
+  }
+
+  .temple-panel__intro h2 {
+    font-size: clamp(3.5rem, 19vw, 6.5rem);
+  }
+
+  .gate-interface {
+    display: block;
+    margin-top: 3.5rem;
+    padding-top: 1rem;
+  }
+
+  .gate-list {
+    display: grid;
+    max-height: none;
+    overflow: visible;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 0 0 1.5rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .gate-marker {
+    display: flex;
+    min-width: 0;
+    min-height: 3.5rem;
+    justify-content: center;
+    padding: 0.65rem 0.3rem;
+    border-right: 1px solid rgba(238, 233, 220, 0.06);
+    text-align: center;
+  }
+
+  .gate-marker::before {
+    top: auto;
+    bottom: -1px;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    transform: translateX(-50%);
+    transition: width 350ms var(--ease);
+  }
+
+  .gate-marker.is-active::before {
+    width: 70%;
+    height: 1px;
+  }
+
+  .gate-marker__name {
+    font-size: 0.5rem;
+  }
+
+  .gate-detail {
+    min-height: 22rem;
+    padding: 3rem 0;
+  }
+
+  .temple-panel__cta {
+    width: 100%;
   }
 
   .acceptance {

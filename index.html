@@ -138,6 +138,15 @@
               <h3>Tapınak</h3>
               <p>Marka, bir mağazadan çok kabul alanı gibi kurgulanır.</p>
             </div>
+            <button
+              class="feature-card__trigger"
+              id="openTemplePanel"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="templePanel"
+            >
+              <span class="sr-only">Tapınak: The Twelve Gates detaylarını aç</span>
+            </button>
           </article>
 
           <article class="feature-card">
@@ -191,6 +200,62 @@
         <span>MMXXVI</span>
       </footer>
     </main>
+
+    <section
+      class="temple-panel"
+      id="templePanel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="templePanelTitle"
+      aria-hidden="true"
+    >
+      <div class="temple-panel__visual" aria-hidden="true">
+        <img src="assets/temple.jpeg" alt="">
+        <div class="temple-panel__visual-mark">
+          <span>XII</span>
+          <i></i>
+          <span>SBꜣ</span>
+        </div>
+      </div>
+
+      <div class="temple-panel__content">
+        <header class="temple-panel__top">
+          <span>THE TWELVE GATES</span>
+          <button class="temple-panel__close" id="closeTemplePanel" type="button">Kapat</button>
+        </header>
+
+        <div class="temple-panel__intro">
+          <p class="eyebrow">The inner architecture · XII</p>
+          <h2 id="templePanelTitle">TAPINAK</h2>
+          <p class="temple-panel__subtitle">SBꜣ — On iki eşikten oluşan kabul alanı.</p>
+          <p class="temple-panel__lead">
+            Tapınak, ürünlerin sergilendiği bir mağaza değildir. İçeri giren kişi on iki kapıdan geçer;
+            her kapı, dış dünyadan bir parçayı geride bırakır.
+          </p>
+        </div>
+
+        <div class="gate-interface">
+          <div class="gate-list" id="gateList" role="tablist" aria-label="On iki kapı"></div>
+
+          <article class="gate-detail is-visible" id="gateDetail" role="tabpanel" tabindex="0">
+            <div class="gate-detail__meta">
+              <span id="gateDetailNumber">I</span>
+              <span id="gateDetailEgyptian">wꜥw</span>
+            </div>
+            <h3 id="gateDetailTitle">Birinci Kapı: Sessizlik</h3>
+            <p id="gateDetailText">
+              İçeri giren kişi önce sesinden ayrılır. Tapınakta ilk kabul, konuşmakla değil susmakla başlar.
+              Gürültü dışarıda kalır.
+            </p>
+          </article>
+        </div>
+
+        <button class="temple-panel__cta" id="templeAcceptanceCta" type="button">
+          <span>Kabul Talebine Geç</span>
+          <span aria-hidden="true">↘</span>
+        </button>
+      </div>
+    </section>
   </div>
 
   <script src="script.js"></script>
