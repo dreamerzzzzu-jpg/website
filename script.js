@@ -20,6 +20,11 @@ const gateDetailNumber = document.querySelector("#gateDetailNumber");
 const gateDetailEgyptian = document.querySelector("#gateDetailEgyptian");
 const gateDetailTitle = document.querySelector("#gateDetailTitle");
 const gateDetailText = document.querySelector("#gateDetailText");
+const openKimonoPanelButton = document.querySelector("#openKimonoPanel");
+const kimonoPanel = document.querySelector("#kimonoPanel");
+const closeKimonoPanelButton = document.querySelector("#closeKimonoPanel");
+const revealKimonoFormButton = document.querySelector("#revealKimonoForm");
+const kimonoHiddenSection = document.querySelector("#kimonoHiddenSection");
 
 const correctPassword = "maakheryu";
 const transitionDuration = 1000;
@@ -385,3 +390,72 @@ openTemplePanelButton.addEventListener("click", openTemplePanel);
 closeTemplePanelButton.addEventListener("click", () => closeTemplePanel());
 templeAcceptanceCta.addEventListener("click", moveToAcceptance);
 document.addEventListener("keydown", handleTemplePanelKeys);
+
+function openKimonoPanel() {
+  kimonoHiddenSection.classList.remove("is-revealed");
+  kimonoHiddenSection.setAttribute("aria-hidden", "true");
+  revealKimonoFormButton.setAttribute("aria-expanded", "false");
+
+  kimonoPanel.classList.add("is-open");
+  kimonoPanel.setAttribute("aria-hidden", "false");
+  mainScreen.setAttribute("inert", "");
+  document.body.classList.add("panel-open");
+
+  window.requestAnimationFrame(() => {
+    closeKimonoPanelButton.focus({ preventScroll: true });
+  });
+}
+
+function closeKimonoPanel() {
+  kimonoPanel.classList.remove("is-open");
+  kimonoPanel.setAttribute("aria-hidden", "true");
+  mainScreen.removeAttribute("inert");
+  document.body.classList.remove("panel-open");
+  openKimonoPanelButton.focus({ preventScroll: true });
+}
+
+function revealKimonoForm() {
+  kimonoHiddenSection.classList.add("is-revealed");
+  kimonoHiddenSection.setAttribute("aria-hidden", "false");
+  revealKimonoFormButton.setAttribute("aria-expanded", "true");
+}
+
+function handleKimonoPanelKeys(event) {
+  if (!kimonoPanel.classList.contains("is-open")) {
+    return;
+  }
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    closeKimonoPanel();
+    return;
+  }
+
+  if (event.key !== "Tab") {
+    return;
+  }
+
+  const focusableElements = [
+    ...kimonoPanel.querySelectorAll('button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])')
+  ].filter((element) => element.offsetParent !== null);
+
+  if (!focusableElements.length) {
+    return;
+  }
+
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (event.shiftKey && document.activeElement === firstElement) {
+    event.preventDefault();
+    lastElement.focus();
+  } else if (!event.shiftKey && document.activeElement === lastElement) {
+    event.preventDefault();
+    firstElement.focus();
+  }
+}
+
+openKimonoPanelButton.addEventListener("click", openKimonoPanel);
+closeKimonoPanelButton.addEventListener("click", closeKimonoPanel);
+revealKimonoFormButton.addEventListener("click", revealKimonoForm);
+document.addEventListener("keydown", handleKimonoPanelKeys);

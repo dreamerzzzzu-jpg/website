@@ -1319,6 +1319,277 @@ body.panel-open {
   background: var(--gold);
 }
 
+/* The unseen garment */
+.kimono-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 51;
+  display: grid;
+  visibility: hidden;
+  grid-template-columns: minmax(22rem, 43vw) minmax(0, 1fr);
+  opacity: 0;
+  background: #060606;
+  pointer-events: none;
+  transition:
+    opacity 900ms var(--ease),
+    visibility 0s linear 900ms;
+}
+
+.kimono-panel.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition:
+    opacity 900ms var(--ease),
+    visibility 0s linear 0s;
+}
+
+.kimono-panel__visual {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  border-right: 1px solid rgba(165, 138, 85, 0.1);
+  background: #050505;
+}
+
+.kimono-panel__visual::after {
+  position: absolute;
+  inset: 1.75rem;
+  z-index: 2;
+  content: "";
+  border: 1px solid rgba(238, 233, 220, 0.055);
+  pointer-events: none;
+}
+
+.kimono-panel__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  opacity: 0.76;
+  filter: grayscale(0.72) sepia(0.12) saturate(0.42) contrast(1.2) brightness(0.27);
+  transform: scale(1.045);
+  transition: transform 8s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+.kimono-panel.is-open .kimono-panel__visual img {
+  transform: scale(1.01);
+}
+
+.kimono-panel__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(3, 3, 3, 0.58), rgba(3, 3, 3, 0.22) 42%, rgba(3, 3, 3, 0.88)),
+    linear-gradient(90deg, rgba(3, 3, 3, 0.42), transparent 48%, rgba(3, 3, 3, 0.8)),
+    radial-gradient(ellipse at 50% 42%, transparent 8%, rgba(3, 3, 3, 0.48) 74%);
+  pointer-events: none;
+}
+
+.kimono-panel__visual-index {
+  position: absolute;
+  right: 2.75rem;
+  bottom: 2.5rem;
+  left: 2.75rem;
+  z-index: 3;
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  color: rgba(238, 233, 220, 0.4);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.56rem;
+  letter-spacing: 0.26em;
+}
+
+.kimono-panel__visual-index i {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(165, 138, 85, 0.18), rgba(165, 138, 85, 0.5), rgba(165, 138, 85, 0.08));
+}
+
+.kimono-panel__content {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-direction: column;
+  padding: 2rem clamp(2rem, 5vw, 6rem) 4rem;
+  background:
+    radial-gradient(ellipse at 75% 42%, rgba(114, 88, 46, 0.045), transparent 30rem),
+    linear-gradient(135deg, #0a0a09, #080808 58%, #0b0a09);
+  scrollbar-color: rgba(165, 138, 85, 0.25) transparent;
+  scrollbar-width: thin;
+}
+
+.kimono-panel__top {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  color: #56534d;
+  border-bottom: 1px solid rgba(238, 233, 220, 0.08);
+  font-size: 0.54rem;
+  letter-spacing: 0.3em;
+}
+
+.kimono-panel__close {
+  padding: 0.6rem 0;
+  color: #77736b;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  background: transparent;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 350ms ease, border-color 350ms ease;
+}
+
+.kimono-panel__close:hover,
+.kimono-panel__close:focus-visible {
+  color: var(--ivory);
+  border-color: rgba(165, 138, 85, 0.7);
+}
+
+.kimono-panel__narrative {
+  display: flex;
+  width: min(100%, 49rem);
+  flex: 1 0 auto;
+  align-self: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(4rem, 9vh, 8rem) 0 clamp(2rem, 5vh, 5rem);
+}
+
+.kimono-panel__heading h2 {
+  margin: 1.5rem 0 0.6rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4rem, 8.5vw, 10rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.78;
+}
+
+.kimono-panel__subtitle {
+  margin: 0;
+  color: rgba(165, 138, 85, 0.85);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.9rem, 1.25vw, 1.15rem);
+  font-style: italic;
+}
+
+.kimono-panel__opening {
+  margin: clamp(4rem, 9vh, 7.5rem) 0 0;
+  color: #8a877f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.95rem, 1.35vw, 1.2rem);
+  line-height: 2;
+}
+
+.kimono-panel__question {
+  margin: clamp(4.5rem, 10vh, 9rem) 0;
+  color: var(--ivory);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.8rem, 5.5vw, 6.5rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  text-shadow: 0 0 70px rgba(165, 138, 85, 0.08);
+}
+
+.kimono-panel__core {
+  max-width: 32rem;
+  margin: 0;
+  color: #a8a49a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  line-height: 1.9;
+}
+
+.kimono-panel__form-button {
+  display: flex;
+  width: min(100%, 13rem);
+  align-items: center;
+  justify-content: space-between;
+  margin-top: clamp(3.5rem, 7vh, 6rem);
+  padding: 1rem 0;
+  color: var(--ivory-muted);
+  border: 0;
+  border-top: 1px solid rgba(165, 138, 85, 0.35);
+  border-bottom: 1px solid rgba(165, 138, 85, 0.35);
+  cursor: pointer;
+  background: transparent;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: color 400ms ease, border-color 400ms ease;
+}
+
+.kimono-panel__form-button span:last-child {
+  color: var(--gold);
+  font-size: 0.85rem;
+  transition: transform 600ms var(--ease);
+}
+
+.kimono-panel__form-button:hover,
+.kimono-panel__form-button:focus-visible {
+  color: var(--ivory);
+  border-color: var(--gold);
+  outline: 0;
+}
+
+.kimono-panel__form-button[aria-expanded="true"] span:last-child {
+  transform: rotate(45deg);
+}
+
+.kimono-panel__hidden {
+  display: grid;
+  max-height: 0;
+  overflow: hidden;
+  grid-template-columns: 0 1fr;
+  gap: 0;
+  margin-top: 0;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    max-height 1.2s var(--ease),
+    opacity 900ms ease,
+    transform 1.2s var(--ease),
+    margin-top 1.2s var(--ease),
+    grid-template-columns 1.2s var(--ease),
+    gap 1.2s var(--ease);
+}
+
+.kimono-panel__hidden.is-revealed {
+  max-height: 15rem;
+  grid-template-columns: 4rem 1fr;
+  gap: 1.5rem;
+  margin-top: clamp(3.5rem, 7vh, 6rem);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.kimono-panel__hidden > span {
+  width: 100%;
+  height: 1px;
+  margin-top: 0.7rem;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.kimono-panel__hidden p {
+  max-width: 31rem;
+  margin: 0;
+  color: #d0cbc0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  line-height: 1.45;
+}
+
 .acceptance {
   position: relative;
   display: flex;
@@ -1703,6 +1974,72 @@ body.panel-open {
 
   .temple-panel__cta {
     width: 100%;
+  }
+
+  .kimono-panel {
+    display: block;
+    overflow-y: auto;
+  }
+
+  .kimono-panel__visual {
+    height: 38svh;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(165, 138, 85, 0.12);
+  }
+
+  .kimono-panel__visual::after {
+    inset: 1rem;
+  }
+
+  .kimono-panel__visual img {
+    object-position: center 30%;
+  }
+
+  .kimono-panel__visual-index {
+    right: 1.5rem;
+    bottom: 1.35rem;
+    left: 1.5rem;
+  }
+
+  .kimono-panel__content {
+    display: block;
+    overflow: visible;
+    padding: 1.5rem 1.25rem 5rem;
+  }
+
+  .kimono-panel__close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 53;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid rgba(165, 138, 85, 0.38);
+    background: rgba(7, 7, 7, 0.72);
+    backdrop-filter: blur(8px);
+  }
+
+  .kimono-panel__narrative {
+    display: block;
+    padding: 5rem 0 1rem;
+  }
+
+  .kimono-panel__heading h2 {
+    font-size: clamp(4rem, 21vw, 7rem);
+  }
+
+  .kimono-panel__opening {
+    margin-top: 4.5rem;
+  }
+
+  .kimono-panel__question {
+    margin: 6rem 0;
+    font-size: clamp(3rem, 14vw, 5.2rem);
+  }
+
+  .kimono-panel__hidden.is-revealed {
+    grid-template-columns: 2rem 1fr;
+    gap: 1rem;
   }
 
   .acceptance {

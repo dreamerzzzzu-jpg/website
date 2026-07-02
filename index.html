@@ -161,6 +161,15 @@
               <h3>Kimono</h3>
               <p>Yılda sınırlı sayıda üretilen, cinsiyetsiz ve törensel bir siluet.</p>
             </div>
+            <button
+              class="feature-card__trigger"
+              id="openKimonoPanel"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="kimonoPanel"
+            >
+              <span class="sr-only">Kimono: Görünmeyen giysi detaylarını aç</span>
+            </button>
           </article>
 
           <article class="feature-card">
@@ -254,6 +263,73 @@
           <span>Kabul Talebine Geç</span>
           <span aria-hidden="true">↘</span>
         </button>
+      </div>
+    </section>
+
+    <section
+      class="kimono-panel"
+      id="kimonoPanel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="kimonoPanelTitle"
+      aria-hidden="true"
+    >
+      <div class="kimono-panel__visual" aria-hidden="true">
+        <img src="assets/kimono.jpeg" alt="">
+        <div class="kimono-panel__veil"></div>
+        <div class="kimono-panel__visual-index">
+          <span>II</span>
+          <i></i>
+          <span>ABSENCE</span>
+        </div>
+      </div>
+
+      <div class="kimono-panel__content">
+        <header class="kimono-panel__top">
+          <span>THE UNSEEN GARMENT</span>
+          <button class="kimono-panel__close" id="closeKimonoPanel" type="button">Kapat</button>
+        </header>
+
+        <div class="kimono-panel__narrative">
+          <div class="kimono-panel__heading">
+            <p class="eyebrow">The withheld form · II</p>
+            <h2 id="kimonoPanelTitle">KIMONO</h2>
+            <p class="kimono-panel__subtitle">Görünmeyen giysi.</p>
+          </div>
+
+          <p class="kimono-panel__opening">
+            Sana gösterilen şey bir ürün değildir.<br>
+            Yalnızca bir boşluktur.<br>
+            Geri kalanını gözün değil, arzun tamamlar.
+          </p>
+
+          <p class="kimono-panel__question">Görebiliyor musun?</p>
+
+          <p class="kimono-panel__core">
+            Hayal ettiğin şey sana ait.<br>
+            Ama onu doğuran boşluk MAA KHERU’ya aittir.
+          </p>
+
+          <button
+            class="kimono-panel__form-button"
+            id="revealKimonoForm"
+            type="button"
+            aria-expanded="false"
+            aria-controls="kimonoHiddenSection"
+          >
+            <span>Formu Aç</span>
+            <span aria-hidden="true">＋</span>
+          </button>
+
+          <div
+            class="kimono-panel__hidden"
+            id="kimonoHiddenSection"
+            aria-hidden="true"
+          >
+            <span aria-hidden="true"></span>
+            <p>Gizlemek için değil, fazlalığı öldürmek için vardır.</p>
+          </div>
+        </div>
       </div>
     </section>
   </div>
