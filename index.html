@@ -64,6 +64,32 @@
       </div>
     </section>
 
+    <section class="screen screen--intro" id="introScreen" aria-labelledby="introTitle" aria-hidden="true">
+      <video
+        class="intro-video"
+        id="introVideo"
+        muted
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+      >
+        <source src="assets/intro.mp4" type="video/mp4">
+      </video>
+
+      <div class="intro-overlay" aria-hidden="true"></div>
+
+      <div class="intro-content">
+        <span class="intro-content__mark" aria-hidden="true"></span>
+        <p id="introTitle">THE PASSAGE OPENS</p>
+      </div>
+
+      <button class="intro-skip" id="skipIntroButton" type="button">Geç</button>
+
+      <div class="intro-progress" aria-hidden="true">
+        <span class="intro-progress__bar" id="introProgressBar"></span>
+      </div>
+    </section>
+
     <main class="screen screen--main" id="mainScreen" aria-hidden="true">
       <nav class="topbar" aria-label="Ana navigasyon">
         <a class="topbar__brand" href="#hero" aria-label="MAA KHERU ana sayfa">MK</a>
