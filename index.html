@@ -170,7 +170,15 @@
             </div>
           </article>
 
-          <article class="feature-card">
+          <article
+            class="feature-card feature-card--interactive"
+            id="openCommunityPanel"
+            role="button"
+            tabindex="0"
+            aria-haspopup="dialog"
+            aria-controls="communityPanel"
+            aria-label="Topluluk detaylarını aç"
+          >
             <div class="feature-card__media" aria-hidden="true">
               <img src="assets/community.jpeg" alt="" loading="eager" decoding="async">
             </div>
@@ -327,6 +335,76 @@
             <span aria-hidden="true"></span>
             <p>Gizlemek için değil, fazlalığı öldürmek için vardır.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="community-panel"
+      id="communityPanel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="communityPanelTitle"
+      aria-hidden="true"
+    >
+      <div class="community-panel__visual" aria-hidden="true">
+        <img src="assets/community.jpeg" alt="">
+        <div class="community-panel__shade"></div>
+        <span class="community-panel__ring"></span>
+      </div>
+
+      <div class="community-panel__content">
+        <header class="community-panel__top">
+          <button class="community-panel__close" id="closeCommunityPanel" type="button">Kapat</button>
+        </header>
+
+        <div class="community-panel__copy">
+          <h2 id="communityPanelTitle">TOPLULUK</h2>
+          <p class="community-panel__subtitle">Geri dönüşün şahitleri.</p>
+
+          <div class="community-panel__text">
+            <p>
+              MAA KHERU yeni bir medeniyet inşa etme iddiası taşımaz.<br>
+              Çünkü yeni olan çoğu zaman yalnızca unutulmuş olanın zayıf bir taklididir.
+            </p>
+
+            <p>Bizim çağrımız, eski bir medeniyetin tekrar yaratılışına değil; onun geride bıraktığı hakikat fikrinin yeniden hatırlanmasına yöneliktir.</p>
+
+            <p>
+              Antik Mısır burada bir dekor, bir kostüm ya da geçmişe duyulan romantik bir özlem değildir.<br>
+              O, insanın varoluşu anlamlandırmak için kurduğu en büyük sembolik yapılardan biridir.
+            </p>
+
+            <p>
+              Bugünün dünyasında kutsal olan görünmez hale geldi.<br>
+              Taşlar turistik görüntüye, mezarlar fotoğraf fonuna, semboller süse dönüştü.
+            </p>
+
+            <p>Bu yüzden arınma gereklidir.</p>
+
+            <p>MAA KHERU topluluğu, bu dönüşe sahip olmak için değil, ona şahit olmak için vardır.</p>
+
+            <p>
+              Buraya katılan kişi bir müşteri değildir.<br>
+              Bir hareketin kalabalığı da değildir.
+            </p>
+
+            <p>O, eski bir medeniyetin yeniden duyulabileceğine inanan sessiz bir tanıktır.</p>
+
+            <p>Hakikatin ve varoluşun yolu ileriye doğru değil, bazen en eski yere geri dönerek bulunur.</p>
+
+            <p>
+              Yeni bir dünya kurmuyoruz.<br>
+              Unutulmuş olanın tekrar görünmesi için alan açıyoruz.
+            </p>
+
+            <p>Huzur, sahip olmakta değil; doğru şeyin yeniden yerine konduğuna şahit olmaktadır.</p>
+          </div>
+
+          <button class="community-panel__cta" id="communityAcceptanceCta" type="button">
+            <span>Kabul Talebine Geç</span>
+            <span aria-hidden="true">↘</span>
+          </button>
         </div>
       </div>
     </section>

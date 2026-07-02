@@ -25,6 +25,10 @@ const kimonoPanel = document.querySelector("#kimonoPanel");
 const closeKimonoPanelButton = document.querySelector("#closeKimonoPanel");
 const revealKimonoFormButton = document.querySelector("#revealKimonoForm");
 const kimonoHiddenSection = document.querySelector("#kimonoHiddenSection");
+const openCommunityPanelButton = document.querySelector("#openCommunityPanel");
+const communityPanel = document.querySelector("#communityPanel");
+const closeCommunityPanelButton = document.querySelector("#closeCommunityPanel");
+const communityAcceptanceCta = document.querySelector("#communityAcceptanceCta");
 
 const correctPassword = "maakheryu";
 const transitionDuration = 1000;
@@ -471,3 +475,76 @@ attachPanelCardInteraction(openKimonoPanelButton, openKimonoPanel);
 closeKimonoPanelButton.addEventListener("click", closeKimonoPanel);
 revealKimonoFormButton.addEventListener("click", revealKimonoForm);
 document.addEventListener("keydown", handleKimonoPanelKeys);
+
+function openCommunityPanel() {
+  communityPanel.classList.add("is-open");
+  communityPanel.setAttribute("aria-hidden", "false");
+  mainScreen.setAttribute("inert", "");
+  document.body.classList.add("panel-open");
+
+  window.requestAnimationFrame(() => {
+    closeCommunityPanelButton.focus({ preventScroll: true });
+  });
+}
+
+function closeCommunityPanel({ returnFocus = true } = {}) {
+  communityPanel.classList.remove("is-open");
+  communityPanel.setAttribute("aria-hidden", "true");
+  mainScreen.removeAttribute("inert");
+  document.body.classList.remove("panel-open");
+
+  if (returnFocus) {
+    openCommunityPanelButton.focus({ preventScroll: true });
+  }
+}
+
+function moveFromCommunityToAcceptance() {
+  closeCommunityPanel({ returnFocus: false });
+
+  window.setTimeout(() => {
+    document.querySelector("#acceptance").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 750);
+}
+
+function handleCommunityPanelKeys(event) {
+  if (!communityPanel.classList.contains("is-open")) {
+    return;
+  }
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    closeCommunityPanel();
+    return;
+  }
+
+  if (event.key !== "Tab") {
+    return;
+  }
+
+  const focusableElements = [
+    ...communityPanel.querySelectorAll('button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])')
+  ].filter((element) => element.offsetParent !== null);
+
+  if (!focusableElements.length) {
+    return;
+  }
+
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (event.shiftKey && document.activeElement === firstElement) {
+    event.preventDefault();
+    lastElement.focus();
+  } else if (!event.shiftKey && document.activeElement === lastElement) {
+    event.preventDefault();
+    firstElement.focus();
+  }
+}
+
+attachPanelCardInteraction(openCommunityPanelButton, openCommunityPanel);
+closeCommunityPanelButton.addEventListener("click", () => closeCommunityPanel());
+communityAcceptanceCta.addEventListener("click", moveFromCommunityToAcceptance);
+document.addEventListener("keydown", handleCommunityPanelKeys);
